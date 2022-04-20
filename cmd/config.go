@@ -57,7 +57,7 @@ func overwriteConfig(cfg *Config) error {
 		return err
 	}
 
-	log.Printf("updated demo configuration at %s", cfgPath)
+	log.Printf("updated resolute configuration at %s", cfgPath)
 	return nil
 }
 

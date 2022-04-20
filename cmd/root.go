@@ -45,9 +45,9 @@ func NewRootCmd() *cobra.Command {
 
 	rootCmd.AddCommand(
 		chainsCmd(),
-		// 	txCmd(),
-		// 	queryCmd(),
-		// 	keysCmd(),
+		txCmd(),
+		queryCmd(),
+		keysCmd(),
 		versionCmd(),
 	)
 	return rootCmd
