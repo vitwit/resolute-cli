@@ -10,6 +10,7 @@ import (
 	"github.com/vitwit/resolute/client/query"
 )
 
+// slashingUnJail command implement tx to unjail validator
 func slashingUnJail() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "unjail",
@@ -42,6 +43,7 @@ $ resolute tx slashing unjail mykey
         Query Commands
 *********************************/
 
+// slashingQuerySigningInfo to query signing info of validator
 func slashingQuerySigningInfo() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "signing-info [validator-conspub]",
@@ -72,6 +74,7 @@ $ resolute query slashing signing-info '{"@type":"/cosmos.crypto.ed25519.PubKey"
 	return cmd
 }
 
+// slashingQuerySigningInfos to query signing info of all validators
 func slashingQuerySigningInfos() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "signing-infos",
@@ -106,6 +109,7 @@ $ resolute query slashing signing-infos
 	return cmd
 }
 
+// slashingQueryParamsCmd to query params
 func slashingQueryParamsCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "params",

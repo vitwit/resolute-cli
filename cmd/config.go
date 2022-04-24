@@ -22,6 +22,7 @@ type Config struct {
 	cl map[string]*client.ChainClient
 }
 
+// createConfig creates config
 func createConfig(home string, debug bool) error {
 	cfgPath := path.Join(home, "config.yaml")
 
@@ -61,6 +62,7 @@ func overwriteConfig(cfg *Config) error {
 	return nil
 }
 
+// initConfig reads in config file and ENV variables if set.
 func initConfig(cmd *cobra.Command) error {
 	home, err := cmd.PersistentFlags().GetString(flags.FlagHome)
 	if err != nil {
@@ -154,7 +156,6 @@ func (c Config) MustYAML() []byte {
 	return out
 }
 
-// Called to initialize the relayer.Chain types on Config
 func validateConfig(c *Config) error {
 	for _, chain := range c.Chains {
 		if err := chain.Validate(); err != nil {

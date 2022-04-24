@@ -9,6 +9,7 @@ import (
 	"github.com/vitwit/resolute/client"
 )
 
+// bankSendCmd implements transaction to send coins from one address to another
 func bankSendCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "send [from] [to] [amount]",
@@ -56,6 +57,7 @@ func bankSendCmd() *cobra.Command {
 			Query Commands
 *****************************************/
 
+// bankBalanceCmd to query the account balance for a key or address
 func bankBalanceCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     "balance [key-or-address]",
@@ -91,6 +93,7 @@ func bankBalanceCmd() *cobra.Command {
 	return cmd
 }
 
+// bankTotalSupplyCmd to query the total supply of coins
 func bankTotalSupplyCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     "total-supply",
@@ -113,6 +116,7 @@ func bankTotalSupplyCmd() *cobra.Command {
 	return cmd
 }
 
+// bankDenomsMetadataCmd to query denoms metadata
 func bankDenomsMetadataCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     "denoms-metadata",

@@ -32,6 +32,7 @@ func chainsCmd() *cobra.Command {
 	return cmd
 }
 
+// cmdChainsList command to list all the chains in the configuration
 func cmdChainsList() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     "list",
@@ -45,6 +46,7 @@ func cmdChainsList() *cobra.Command {
 	return cmd
 }
 
+// cmdChainsShow command to show an individual chain configuration
 func cmdChainsShow() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     "show [chain-name]",
@@ -62,6 +64,7 @@ func cmdChainsShow() *cobra.Command {
 	return cmd
 }
 
+// cmdChainsShowDefault command to show the configured default chain
 func cmdChainsShowDefault() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     "show-default",
@@ -75,6 +78,7 @@ func cmdChainsShowDefault() *cobra.Command {
 	return cmd
 }
 
+// cmdChainsSetDefault command to set the default chain
 func cmdChainsSetDefault() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     "set-default [chain-name]",
@@ -92,6 +96,7 @@ func cmdChainsSetDefault() *cobra.Command {
 	return cmd
 }
 
+// cmdChainsRegistryList command to list chains available for configuration from the registry
 func cmdChainsRegistryList() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     "registry-list",
@@ -109,6 +114,7 @@ func cmdChainsRegistryList() *cobra.Command {
 	return cmd
 }
 
+// cmdAddChains command to add configuration for a chain
 func cmdAddChains() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     "add [[chain-name]]",
@@ -157,6 +163,7 @@ func cmdAddChains() *cobra.Command {
 	return cmd
 }
 
+// cmdChainsEdit to edit a chain configuration value
 func cmdChainsEdit() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     "edit [chain-name] [key] [value]",
@@ -203,6 +210,7 @@ func cmdChainsEdit() *cobra.Command {
 	return cmd
 }
 
+// cmdChainsEditorDefault command to Open Lens configuration in an editor
 func cmdChainsEditorDefault() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "editor",

@@ -103,7 +103,7 @@ func (cc *ChainClient) QueryLatestHeight() (int64, error) {
 	return stat.SyncInfo.LatestBlockHeight, nil
 }
 
-// QueryBalanceWithAddress returns the amount of coins in the relayer account with address as input
+// QueryBalanceWithAddress returns the amount of coins in theaccount with address as input
 // TODO add pagination support
 
 func (cc *ChainClient) QueryBalanceWithAddress(address string) (sdk.Coins, error) {

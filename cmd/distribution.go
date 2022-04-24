@@ -15,6 +15,7 @@ var (
 	FlagAll        = "all"
 )
 
+// distributionWithdrawRewardsCmd to Withdraw rewards from a given delegation address
 func distributionWithdrawRewardsCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "withdraw-rewards [validator-addr] [from]",
@@ -79,6 +80,7 @@ $ resolute tx withdraw-rewards --from mykey --all
 	return cmd
 }
 
+// fundCommunityPoolCmd implements tx to Funds the community pool with the specified amount
 func fundCommunityPoolCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "fund-community-pool [amount] [depositerAddr]",
@@ -119,6 +121,7 @@ $ resolute tx distribution fund-community-pool 100uatom mykey
 			Query Commands
 ********************************************/
 
+// distributionParamsCmd to query things about a chain's distribution params
 func distributionParamsCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "params",
@@ -136,6 +139,7 @@ func distributionParamsCmd() *cobra.Command {
 	return cmd
 }
 
+// distributionCommunityPoolCmd to query things about a chain's community pool
 func distributionCommunityPoolCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "community-pool",
@@ -152,6 +156,7 @@ func distributionCommunityPoolCmd() *cobra.Command {
 	return cmd
 }
 
+// distributionCommissionCmd to query a specific validator's commission
 func distributionCommissionCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "commission [validator-address]",
@@ -173,6 +178,7 @@ func distributionCommissionCmd() *cobra.Command {
 	return cmd
 }
 
+// distributionRewardsCmd to query things about a delegator's rewards
 func distributionRewardsCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "rewards [key-or-delegator-address] [validator-address]",
@@ -205,6 +211,7 @@ func distributionRewardsCmd() *cobra.Command {
 	return cmd
 }
 
+// distributionSlashesCmd to query things about a validator's slashes on a chain
 func distributionSlashesCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "slashes [validator-address] [start-height] [end-height]",
@@ -244,6 +251,7 @@ func distributionSlashesCmd() *cobra.Command {
 	return paginationFlags(cmd)
 }
 
+// distributionValidatorRewardsCmd to query things about a validator's outstanding rewards on a chain
 func distributionValidatorRewardsCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "validator-outstanding-rewards [address]",

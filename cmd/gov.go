@@ -45,6 +45,7 @@ var ProposalFlags = []string{
 	FlagDeposit,
 }
 
+// govDepositCmd implements tx to deposit tokens for an active proposal
 func govDepositCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "deposit [proposal-id] [deposit] [mykey]",
@@ -95,6 +96,7 @@ $ resolute tx gov deposit 1 10stake mykey
 	return cmd
 }
 
+// govVoteCmd to vote for an active proposal
 func govVoteCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "vote [proposal-id] [option] [mykey]",
@@ -145,6 +147,7 @@ $ resolute tx gov vote 1 yes mykey
 	return cmd
 }
 
+// govWeightedVoteCmd to vote for an active proposal
 func govWeightedVoteCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "weighted-vote [proposal-id] [weighted-options] [mykey]",
@@ -195,6 +198,7 @@ $ resolute tx gov weighted-vote 1 yes=0.6,no=0.3,abstain=0.05,no_with_veto=0.05 
 	return cmd
 }
 
+// govSubmitProposalCmd implements tx to submit proposal
 func govSubmitProposalCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "submit-proposal mykey",
@@ -273,6 +277,7 @@ $ dmeo tx gov submit-proposal --title="Test Proposal" --description="My awesome 
                   Query Commands
 -----------------------------------------------------*/
 
+// govQueryProposalCmd to query details of a single proposal
 func govQueryProposalCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "proposal [proposal-id]",
@@ -307,6 +312,7 @@ $ resolute query gov proposal 1
 	return cmd
 }
 
+// govQueryProposalsCmd to query proposals with optional filters
 func govQueryProposalsCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "proposals",
@@ -377,6 +383,7 @@ $ resolute query gov proposals --page=2 --limit=100
 	return cmd
 }
 
+// govQueryVoteCmd to query details of a single vote
 func govQueryVoteCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "vote [proposal-id] [voter-addr]",
@@ -424,6 +431,7 @@ $ resolute query gov vote 1 cosmos1skjwj5whet0lpe65qaq4rpq03hjxlwd9nf39lk
 	return cmd
 }
 
+// govQueryVotesCmd to query votes on a proposal
 func govQueryVotesCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "votes [proposal-id]",
@@ -494,6 +502,7 @@ $ resolute query gov votes 1 --page=2 --limit=100
 	return cmd
 }
 
+// govQueryParam to query the parameters
 func govQueryParam() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "param [param-type]",
@@ -537,6 +546,7 @@ $ resolute query gov param deposit
 	return cmd
 }
 
+// govQueryParamsCmd to query the parameters of the governance process
 func govQueryParamsCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "params",
@@ -564,6 +574,7 @@ $ resolute query gov params
 	return cmd
 }
 
+// govQueryPrposerCmd to query the proposer of a governance proposal
 func govQueryPrposerCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "proposer [proposal-id]",
@@ -594,6 +605,7 @@ $ resolute query gov proposer 1
 	return cmd
 }
 
+// govQueryDepositCmd to query details of a deposit
 func govQueryDepositCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "deposit [proposal-id] [depositer-addr]",
@@ -649,6 +661,7 @@ $ resolute query gov deposit 1 cosmos1skjwj5whet0lpe65qaq4rpq03hjxlwd9nf39lk
 	return cmd
 }
 
+// govQueryDepositsCmd to query deposits on a proposal
 func govQueryDepositsCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "deposits [proposal-id]",
@@ -713,6 +726,7 @@ $ resolute query gov deposits 1
 	return cmd
 }
 
+// govQueryTallyCmd to query the tally of a proposal vote
 func govQueryTallyCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "tally [proposal-id]",

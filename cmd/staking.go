@@ -12,6 +12,7 @@ import (
 	"github.com/vitwit/resolute/client/query"
 )
 
+// stakingDelegateCmd implements tx to delegate tokens to a validator
 func stakingDelegateCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "delegate [validator-addr] [amount] [key]",
@@ -73,8 +74,8 @@ $ resolute tx staking delegate cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lc
 	return cmd
 }
 
+// stakingRedelegateCmd implements tx to redelegate tokens
 func stakingRedelegateCmd() *cobra.Command {
-
 	cmd := &cobra.Command{
 		Use:   "redelegate [src-validator-addr] [dst-validator-addr] [amount] [key]",
 		Short: "Redelegate illiquid tokens from one validator to another",
@@ -122,6 +123,7 @@ $ <appd>
 	return cmd
 }
 
+// stakingUnbondCmd implements tx to unbond shares from a validator
 func stakingUnbondCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "unbond [validator-addr] [amount] [key]",
@@ -169,6 +171,7 @@ $ <appd> tx staking unbond cosmosvaloper1gghjut3ccd8ay0zduzj64hwre2fxs9ldmqhffj 
            Query Commands
 ****************************************/
 
+// stakingDelegationCmd to query delegations based on validator address
 func stakingDelegationCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "delegation [delegator-addr] [validator-addr]",
@@ -194,6 +197,7 @@ $ resolute query staking delegation cosmos1gghjut3ccd8ay0zduzj64hwre2fxs9ld75ru9
 	return cmd
 }
 
+// stakingDelegationsCmd to query delegations of a delegator address
 func stakingDelegationsCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "delegations [delegator-addr]",
@@ -228,6 +232,7 @@ $ resolute query staking delegations cosmos1gghjut3ccd8ay0zduzj64hwre2fxs9ld75ru
 	return cmd
 }
 
+// stakingValidatorDelegationsCmd to query all delegations for a validator address
 func stakingValidatorDelegationsCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     "validator-delegations [validator-addr]",
@@ -263,6 +268,7 @@ $ resolute query staking validator-delegations [validator address (valoper)]
 	return cmd
 }
 
+// unbondingDelegationCmd to query an unbonding-delegation record based on delegator and validator address
 func unbondingDelegationCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "unbonding-delegation [delegator-addr] [validator-addr]",
@@ -292,6 +298,7 @@ $ resolute query staking unbonding-delegation cosmos1gghjut3ccd8ay0zduzj64hwre2f
 	return cmd
 }
 
+// unbondingDelegationsCmd to query all unbonding-delegations records for one delegator
 func unbondingDelegationsCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "unbonding-delegations [delegator-addr]",
@@ -328,6 +335,7 @@ $ resolute query staking unbonding-delegations cosmos1gghjut3ccd8ay0zduzj64hwre2
 	return cmd
 }
 
+// stakingRedelegationCmd to query a redelegation
 func stakingRedelegationCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "redelegation [delegator-addr] [src-validator-addr] [dst-validator-addr]",
@@ -357,6 +365,7 @@ $ resolute query staking redelegation cosmos1gghjut3ccd8ay0zduzj64hwre2fxs9ld75r
 	return cmd
 }
 
+// stakingRedelegationsCmd to query all redelegations of a delegator address
 func stakingRedelegationsCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "redelegations [delegator-addr]",
@@ -394,6 +403,7 @@ $ dmeo query staking redelegation cosmos1gghjut3ccd8ay0zduzj64hwre2fxs9ld75ru9p
 	return cmd
 }
 
+// stakingQueryValidator to query details about a validator
 func stakingQueryValidator() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "validator [validator-addr]",

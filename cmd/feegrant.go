@@ -27,6 +27,7 @@ const (
 	FlagAllowedMsgs   = "allowed-messages"
 )
 
+// feeGrantCmd implements tx to grant Fee allowance to an address
 func feeGrantCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "grant [granter_key_or_address] [grantee]",
@@ -161,6 +162,7 @@ func feeGrantCmd() *cobra.Command {
 	return cmd
 }
 
+// feegrantRevokeTxCmd to revoke fee grant
 func feegrantRevokeTxCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "revoke [granter] [grantee]",
@@ -210,6 +212,7 @@ func getPeriod(duration int64) time.Duration {
                     Query Commands
 --------------------------------------------------------------*/
 
+// feegrantQueryGrantCmd to query details of a single grant
 func feegrantQueryGrantCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "grant [granter] [grantee]",
@@ -242,6 +245,7 @@ You can find the fee-grant of a granter and grantee.`),
 	return cmd
 }
 
+// feeGrantsByGranteeQueryCmd to query all grants of a grantee
 func feeGrantsByGranteeQueryCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "grants [grantee]",

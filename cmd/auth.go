@@ -23,6 +23,7 @@ const (
 	eventFormat = "{eventType}.{eventAttribute}={value}"
 )
 
+// authQueryTxCmd command to query the transaction by hash
 func authQeuryTxCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "tx [hash]",
@@ -52,6 +53,7 @@ func authQeuryTxCmd() *cobra.Command {
 	return cmd
 }
 
+// QueryTxsByEventsCmd to query for paginated transactions that match a set of events
 func QueryTxsByEventsCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "txs",
@@ -116,6 +118,7 @@ $ resolute query txs --events 'message.sender=cosmos1...&message.action=withdraw
 	return cmd
 }
 
+// QUeryAccountCmd to query an account by address
 func QUeryAccountCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "account [address]",
@@ -139,6 +142,7 @@ func QUeryAccountCmd() *cobra.Command {
 	return cmd
 }
 
+// QueryAccountsCmd to query all accounts
 func QueryAccountsCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "accounts",
@@ -168,6 +172,7 @@ func QueryAccountsCmd() *cobra.Command {
 	return cmd
 }
 
+// QueryAuthParamsCmd to query the current auth params
 func QueryAuthParamsCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "params",

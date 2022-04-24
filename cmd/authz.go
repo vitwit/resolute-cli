@@ -27,6 +27,7 @@ const (
 	unbond                = "unbond"
 )
 
+// authzGrantAuthorizationCmd implements transaction to grant authorization to an address to execute transaction
 func authzGrantAuthorizationCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "grant <grantee> <authorization_type=\"send\"|\"generic\"|\"delegate\"|\"unbond\"|\"redelegate\"> <granter>",
@@ -34,7 +35,7 @@ func authzGrantAuthorizationCmd() *cobra.Command {
 		Long: strings.TrimSpace(
 			fmt.Sprintf(`grant authorization to an address to execute a transaction on your behalf:
 Examples:
-$ demo tx authz grant cosmos1skjw.. send  --spend-limit=1000stake cosmos1skl..`),
+$ resolute tx authz grant cosmos1skjw.. send  --spend-limit=1000stake cosmos1skl..`),
 		),
 		Args: cobra.ExactArgs(3),
 		RunE: func(cmd *cobra.Command, args []string) error {
@@ -162,6 +163,7 @@ $ demo tx authz grant cosmos1skjw.. send  --spend-limit=1000stake cosmos1skl..`)
 	return cmd
 }
 
+// bech32toValidatorAddresses creates a valAddress from string
 func bech32toValidatorAddresses(validators []string) ([]sdk.ValAddress, error) {
 	cl := config.GetDefaultClient()
 	cl.SetConfig()
@@ -176,6 +178,7 @@ func bech32toValidatorAddresses(validators []string) ([]sdk.ValAddress, error) {
 	return vals, nil
 }
 
+// authzRevokeAuthorizationCmd implements transaction to revoke authorization from grantee
 func authzRevokeAuthorizationCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "revoke [grantee] [msg-type-url] [granter]",
@@ -209,6 +212,7 @@ func authzRevokeAuthorizationCmd() *cobra.Command {
 	return cmd
 }
 
+// authzExecAuthorizationCmd implements transaction to execute tx on behalf of granter account
 func authzExecAuthorizationCmd() *cobra.Command {
 	var ctx client.Context
 	cmd := &cobra.Command{
@@ -247,6 +251,7 @@ func authzExecAuthorizationCmd() *cobra.Command {
 		     Query Commands
 *******************************************/
 
+// authzQueryGrants to query grants for granter-grantee pair
 func authzQueryGrants() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "grants [granter-addr] [grantee-addr] [msg-type-url]?",
