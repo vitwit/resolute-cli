@@ -12,7 +12,6 @@ var sdkConfigMutex sync.Mutex
 
 // SetSDKConfig sets the SDK config to the proper bech32 prefixes
 // Don't use this unless you know what you're doing.
-// if lens is successful, this can be eliminated
 // TODO: :dagger: :knife: :chainsaw: remove this function
 func (cc *ChainClient) SetSDKContext() func() {
 	sdkConfigMutex.Lock()

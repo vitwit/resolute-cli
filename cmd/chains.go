@@ -28,6 +28,7 @@ func chainsCmd() *cobra.Command {
 		cmdChainsRegistryList(),
 		cmdChainsEdit(),
 		cmdChainsEditorDefault(),
+		cmdChainsDelete(),
 	)
 	return cmd
 }
@@ -210,12 +211,12 @@ func cmdChainsEdit() *cobra.Command {
 	return cmd
 }
 
-// cmdChainsEditorDefault command to Open Lens configuration in an editor
+// cmdChainsEditorDefault command to Open Resolute configuration in an editor
 func cmdChainsEditorDefault() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "editor",
-		Short: "Open Lens configuration in an editor",
-		Long: `Open Lens configuration in an editor. By default, command will spawn a vim window. You can 
+		Short: "Open resolute configuration in an editor",
+		Long: `Open resolute configuration in an editor. By default, command will spawn a vim window. You can 
 override the editor using the environment variable RESOLUTE_EDITOR. Please ensure $RESOLUTE_EDITOR points to 
 an editor in your path that can be called using $RESOLUTE_EDITOR <file-path>.`,
 		Args: cobra.NoArgs,
@@ -237,6 +238,33 @@ an editor in your path that can be called using $RESOLUTE_EDITOR <file-path>.`,
 			c.Stdin = os.Stdin
 			c.Stdout = os.Stdout
 			return c.Run()
+		},
+	}
+	return cmd
+}
+
+func cmdChainsDelete() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:     "delete [[chain-name]]",
+		Aliases: []string{"d"},
+		Short:   "delete a chain from the configuration",
+		Args:    cobra.MinimumNArgs(1),
+		RunE: func(cmd *cobra.Command, args []string) error {
+			originalChainCount := len(config.Chains)
+			for _, arg := range args {
+				if config.DefaultChain == arg {
+					fmt.Fprintf(cmd.ErrOrStderr(), "Ignoring delete request for %s, unable to delete default chain.\n", arg)
+					continue
+				}
+				delete(config.Chains, arg)
+			}
+
+			// If nothing was removed, there's no need to update the configuration file.
+			if len(config.Chains) == originalChainCount {
+				return nil
+			}
+
+			return overwriteConfig(config)
 		},
 	}
 	return cmd

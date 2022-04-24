@@ -35,7 +35,7 @@ func keysCmd() *cobra.Command {
 		keysDeleteCmd(),
 		keysEnumerateCmd(),
 		keysListCmd(),
-		keysExportCmd(),
+		//keysExportCmd(),
 		keysShowCmd(),
 	)
 	return cmd
@@ -288,34 +288,35 @@ $ resolute k e key2`)),
 }
 
 // keysExportCmd respresents the `keys export` command
-func keysExportCmd() *cobra.Command {
-	cmd := &cobra.Command{
-		Use:     "export [name]",
-		Aliases: []string{"e"},
-		Short:   "exports a privkey from the keychain associated with a particular chain",
-		Args:    cobra.ExactArgs(1),
-		Example: strings.TrimSpace(fmt.Sprintf(`
-$ resolute keys export ibc-0 testkey
-$ resolute k e ibc-2 testkey`)),
-		RunE: func(cmd *cobra.Command, args []string) error {
-			cl := config.GetDefaultClient()
-			keyName := args[1]
-			if !cl.KeyExists(keyName) {
-				return errKeyDoesntExist(keyName)
-			}
+// func keysExportCmd() *cobra.Command {
+// 	cmd := &cobra.Command{
+// 		Use:     "export [name]",
+// 		Aliases: []string{"e"},
+// 		Short:   "exports a privkey from the keychain associated with a particular chain",
+// 		Args:    cobra.ExactArgs(1),
+// 		Example: strings.TrimSpace(fmt.Sprintf(`
+// $ resolute keys export ibc-0 testkey
+// $ resolute k e ibc-2 testkey`)),
+// 		RunE: func(cmd *cobra.Command, args []string) error {
+// 			cl := config.GetDefaultClient()
+// 			keyName := args[1]
+// 			if !cl.KeyExists(keyName) {
+// 				return errKeyDoesntExist(keyName)
+// 			}
 
-			info, err := cl.ExportPrivKeyArmor(keyName)
-			if err != nil {
-				return err
-			}
+// 			info, err := cl.ExportPrivKeyArmor(keyName)
+// 			if err != nil {
+// 				return err
+// 			}
 
-			fmt.Println(info)
-			return nil
-		},
-	}
+// 			fmt.Println(info)
+// 			return nil
+// 		},
+// 	}
 
-	return cmd
-}
+// 	return cmd
+// }
+
 func errKeyExists(name string) error {
 	return fmt.Errorf("a key with name %s already exists", name)
 }

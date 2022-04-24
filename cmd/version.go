@@ -15,7 +15,7 @@ func versionCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     "version",
 		Aliases: []string{"v"},
-		Short:   "show version information for lens, sdk, and tendermint",
+		Short:   "show version information for resolute, sdk, and tendermint",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			bi, _ := dbg.ReadBuildInfo()
 
