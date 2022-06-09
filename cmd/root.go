@@ -24,6 +24,8 @@ func NewRootCmd() *cobra.Command {
 		Short: "Resolute is an advanced spacecraft designed to travel through the space. connecting all Cosmos sovereign chains.",
 	}
 
+	rootCmd.CompletionOptions.DisableDefaultCmd = true
+
 	rootCmd.PersistentPreRunE = func(cmd *cobra.Command, _ []string) error {
 		if err := initConfig(rootCmd); err != nil {
 			return err
