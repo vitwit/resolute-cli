@@ -15,7 +15,6 @@ func queryCmd() *cobra.Command {
 		stakingQueryCmd(),
 		authzQueryCmd(),
 		feegrantQueryCmd(),
-		queryTxsCmd(),
 		queryTxCmd(),
 		authQueryCmd(),
 		governanceQueryCmd(),
@@ -58,7 +57,6 @@ func distributionQueryCmd() *cobra.Command {
 		distributionRewardsCmd(),
 		distributionSlashesCmd(),
 	)
-
 	return cmd
 }
 
@@ -118,23 +116,10 @@ func queryTxCmd() *cobra.Command {
 	}
 
 	cmd.AddCommand(
-		authQeuryTxCmd(),
+		authQueryTxCmd(),
 	)
 	return cmd
 }
-
-func queryTxsCmd() *cobra.Command {
-	cmd := &cobra.Command{
-		Use:   "txs",
-		Short: "Query txs by events",
-	}
-
-	cmd.AddCommand(
-		QueryTxsByEventsCmd(),
-	)
-	return cmd
-}
-
 func authQueryCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "auth",

@@ -224,6 +224,7 @@ You can find the fee-grant of a granter and grantee.`),
 		),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			cl := config.GetDefaultClient()
+			cl.SetConfig()
 			cq := query.Query{Client: cl, Options: query.DefaultOptions()}
 
 			granterAddr, err := cl.AccountFromKeyOrAddress(args[0])
@@ -256,7 +257,7 @@ func feeGrantsByGranteeQueryCmd() *cobra.Command {
 		),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			cl := config.GetDefaultClient()
-
+			cl.SetConfig()
 			granteeAddr, err := cl.AccountFromKeyOrAddress(args[0])
 			if err != nil {
 				return err

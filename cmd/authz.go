@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"strings"
+
 	"time"
 
 	"github.com/cosmos/cosmos-sdk/client"
@@ -50,7 +51,6 @@ $ resolute tx authz grant cosmos1skjw.. send  --spend-limit=1000stake cosmos1skl
 			if err != nil {
 				return err
 			}
-
 			exp, err := cmd.Flags().GetInt64(FlagExpiration)
 			if err != nil {
 				return err
@@ -152,6 +152,7 @@ $ resolute tx authz grant cosmos1skjw.. send  --spend-limit=1000stake cosmos1skl
 			if err != nil {
 				return err
 			}
+
 			return cl.PrintTxResponse(res)
 		},
 	}

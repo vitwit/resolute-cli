@@ -12,7 +12,6 @@ func txCmd() *cobra.Command {
 		bankTxCmd(),
 		stakingTxCmd(),
 		distributionTxCmd(),
-		authzTxCmd(),
 		feegrantTxCmd(),
 		governanceTxCmd(),
 		slashingTxCmd(),
@@ -79,21 +78,21 @@ func distributionTxCmd() *cobra.Command {
 }
 
 // authzTxCmd returns the authz tx commands for this module
-func authzTxCmd() *cobra.Command {
-	cmd := &cobra.Command{
-		Use:     "authz",
-		Aliases: []string{"az"},
-		Short:   "authz transaction commands",
-	}
+// func authzTxCmd() *cobra.Command {
+// 	cmd := &cobra.Command{
+// 		Use:     "authz",
+// 		Aliases: []string{"az"},
+// 		Short:   "authz transaction commands",
+// 	}
 
-	cmd.AddCommand(
-		authzGrantAuthorizationCmd(),
-		authzRevokeAuthorizationCmd(),
-		authzExecAuthorizationCmd(),
-	)
+// 	cmd.AddCommand(
+// 		authzGrantAuthorizationCmd(),
+// 		authzRevokeAuthorizationCmd(),
+// 		authzExecAuthorizationCmd(),
+// 	)
 
-	return cmd
-}
+// 	return cmd
+// }
 
 func governanceTxCmd() *cobra.Command {
 	cmd := &cobra.Command{

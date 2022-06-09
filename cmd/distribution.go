@@ -33,7 +33,13 @@ $ resolute tx withdraw-rewards --from mykey --all
 		RunE: func(cmd *cobra.Command, args []string) error {
 			cl := config.GetDefaultClient()
 
-			deleAddr, err := cl.AccountFromKeyOrAddress(args[1])
+			deleAddr := ""
+			if len(args) == 2 {
+				deleAddr = args[1]
+			} else {
+				deleAddr = args[0]
+			}
+			delAddr, err := cl.AccountFromKeyOrAddress(deleAddr)
 			if err != nil {
 				return err
 			}
@@ -41,7 +47,7 @@ $ resolute tx withdraw-rewards --from mykey --all
 			msgs := []sdk.Msg{}
 			if all, _ := cmd.Flags().GetBool(FlagAll); all {
 				cl.SetConfig()
-				validators, err := cl.QueryDelegatorValidators(cmd.Context(), deleAddr)
+				validators, err := cl.QueryDelegatorValidators(cmd.Context(), delAddr)
 				if err != nil {
 					return err
 				}
@@ -51,7 +57,7 @@ $ resolute tx withdraw-rewards --from mykey --all
 					if err != nil {
 						return err
 					}
-					msg := types.NewMsgWithdrawDelegatorReward(deleAddr, sdk.ValAddress(val))
+					msg := types.NewMsgWithdrawDelegatorReward(delAddr, sdk.ValAddress(val))
 					msgs = append(msgs, msg)
 				}
 
@@ -61,7 +67,7 @@ $ resolute tx withdraw-rewards --from mykey --all
 				if err != nil {
 					return err
 				}
-				msgs = append(msgs, types.NewMsgWithdrawDelegatorReward(deleAddr, sdk.ValAddress(valAddr)))
+				msgs = append(msgs, types.NewMsgWithdrawDelegatorReward(delAddr, sdk.ValAddress(valAddr)))
 			}
 
 			if commission, _ := cmd.Flags().GetBool(FlagCommission); commission {
@@ -216,10 +222,10 @@ func distributionSlashesCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "slashes [validator-address] [start-height] [end-height]",
 		Short: "query things about a validator's slashes on a chain",
-		Args:  cobra.ExactArgs(1),
+		Args:  cobra.ExactArgs(3),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			cl := config.GetDefaultClient()
-
+			cl.SetConfig()
 			pageReq, err := ReadPageRequest(cmd.Flags())
 			if err != nil {
 				return err
